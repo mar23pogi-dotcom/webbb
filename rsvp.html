@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,6 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
@@ -18,10 +16,7 @@
   <style>
     body {
       font-family: 'Cormorant Garamond', serif;
-      background:
-        radial-gradient(circle at top,
-          #1b1327,
-          #07070c 70%);
+      background: radial-gradient(circle at top, #1b1327, #07070c 70%);
       color: #f8f5ed;
       min-height: 100vh;
     }
@@ -40,9 +35,7 @@
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(212, 175, 55, 0.25);
-      box-shadow:
-        0 0 50px rgba(212, 175, 55, 0.12),
-        0 20px 60px rgba(0, 0, 0, 0.55);
+      box-shadow: 0 0 50px rgba(212, 175, 55, 0.12), 0 20px 60px rgba(0, 0, 0, 0.55);
     }
 
     input,
@@ -51,7 +44,7 @@
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(212, 175, 55, 0.2);
       color: white;
-      transition: all .3s;
+      transition: all 0.3s;
     }
 
     input:focus,
@@ -59,26 +52,28 @@
     textarea:focus {
       outline: none;
       border-color: #d4af37;
-      box-shadow: 0 0 15px rgba(212, 175, 55, .25);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
     }
 
     .royal-btn {
       background: linear-gradient(135deg, #d4af37, #f1d37a);
       color: #111827;
-      transition: all .35s ease;
+      transition: all 0.35s ease;
     }
 
     .royal-btn:hover {
       transform: translateY(-4px);
       box-shadow: 0 15px 40px rgba(212, 175, 55, 0.35);
     }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 
 <body class="flex items-center justify-center p-6">
-
   <div class="glass rounded-[40px] p-10 md:p-14 w-full max-w-3xl">
-
     <div class="text-center mb-10">
       <p class="uppercase tracking-[0.5em] text-gray-400 text-sm mb-4">
         ✦ Royal Invitation ✦
@@ -93,14 +88,13 @@
       </p>
     </div>
 
-    <form action="#" method="POST" class="space-y-6">
-
+    <form id="rsvpForm" action="#" method="POST" class="space-y-6">
       <div>
-        <label class="block mb-2 text-lg">
+        <label for="name" class="block mb-2 text-lg">
           Full Name
         </label>
-
         <input
+          id="name"
           type="text"
           name="name"
           required
@@ -109,11 +103,11 @@
       </div>
 
       <div>
-        <label class="block mb-2 text-lg">
+        <label for="email" class="block mb-2 text-lg">
           Email Address
         </label>
-
         <input
+          id="email"
           type="email"
           name="email"
           placeholder="you@example.com"
@@ -121,25 +115,24 @@
       </div>
 
       <div>
-        <label class="block mb-2 text-lg">
+        <label for="attendance" class="block mb-2 text-lg">
           Will you attend?
         </label>
-
         <select
+          id="attendance"
           name="attendance"
           class="w-full rounded-2xl px-5 py-4">
-
           <option value="yes">Yes, I will attend</option>
           <option value="no">Sorry, I cannot attend</option>
         </select>
       </div>
 
       <div>
-        <label class="block mb-2 text-lg">
+        <label for="guests" class="block mb-2 text-lg">
           Number of Guests
         </label>
-
         <input
+          id="guests"
           type="number"
           name="guests"
           value="1"
@@ -149,11 +142,11 @@
       </div>
 
       <div>
-        <label class="block mb-2 text-lg">
+        <label for="message" class="block mb-2 text-lg">
           Message for the Couple
         </label>
-
         <textarea
+          id="message"
           name="message"
           rows="5"
           placeholder="Write your wishes for the happy couple..."
@@ -161,12 +154,16 @@
       </div>
 
       <button
+        id="submitBtn"
         type="submit"
         class="royal-btn w-full rounded-full py-4 text-lg font-semibold">
         Send RSVP
       </button>
-
     </form>
+
+    <div id="successMessage" class="hidden text-center mt-6 text-green-300 text-lg">
+      Thank you! Your RSVP has been sent successfully.
+    </div>
 
     <div class="text-center mt-10">
       <a
@@ -175,52 +172,55 @@
         ← Back to Invitation
       </a>
     </div>
-
   </div>
+
   <script>
-const form = document.getElementById('rsvpForm');
-const success = document.getElementById('successMessage');
-const btn = document.getElementById('submitBtn');
+    const form = document.getElementById('rsvpForm');
+    const success = document.getElementById('successMessage');
+    const btn = document.getElementById('submitBtn');
 
-const scriptURL =
-  'https://script.google.com/macros/s/AKfycbyvtPdAEZtKFJ6CoUu2_p8yJGqvhF2mH10VpMKhGJVw6itftW9Vp8b3pU2TM8BDBj8p/exec';
+    const scriptURL =
+      'https://script.google.com/macros/s/AKfycbyvtPdAEZtKFJ6CoUu2_p8yJGqvhF2mH10VpMKhGJVw6itftW9Vp8b3pU2TM8BDBj8p/exec';
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-  btn.disabled = true;
-  btn.innerText = 'Sending...';
+      btn.disabled = true;
+      btn.innerText = 'Sending...';
 
-  const data = {
-    name: form.name.value,
-    email: form.email.value,
-    attendance: form.attendance.value,
-    guests: form.guests.value,
-    message: form.message.value
-  };
+      const data = {
+        name: form.elements.name.value,
+        email: form.elements.email.value,
+        attendance: form.elements.attendance.value,
+        guests: form.elements.guests.value,
+        message: form.elements.message.value
+      };
 
-  try {
-    const response = await fetch(scriptURL, {
-      method: 'POST',
-      body: JSON.stringify(data)
+      try {
+        const response = await fetch(scriptURL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.result === 'success') {
+          form.reset();
+          success.classList.remove('hidden');
+          btn.innerText = 'RSVP Sent ✓';
+        } else {
+          throw new Error('Unexpected response');
+        }
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.innerText = 'Send RSVP';
+        alert('Unable to send RSVP.');
+      }
     });
-
-    const result = await response.json();
-
-    if (result.result === 'success') {
-      form.reset();
-      success.classList.remove('hidden');
-      btn.innerText = 'RSVP Sent ✓';
-    }
-  } catch (err) {
-    console.error(err);
-    btn.disabled = false;
-    btn.innerText = 'Send RSVP';
-    alert('Unable to send RSVP.');
-  }
-});
-</script>
-
+  </script>
 </body>
-
 </html>
