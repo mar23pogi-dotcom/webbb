@@ -177,6 +177,49 @@
     </div>
 
   </div>
+  <script>
+const form = document.getElementById('rsvpForm');
+const success = document.getElementById('successMessage');
+const btn = document.getElementById('submitBtn');
+
+const scriptURL =
+  'https://script.google.com/macros/s/AKfycbyvtPdAEZtKFJ6CoUu2_p8yJGqvhF2mH10VpMKhGJVw6itftW9Vp8b3pU2TM8BDBj8p/exec';
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  btn.disabled = true;
+  btn.innerText = 'Sending...';
+
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    attendance: form.attendance.value,
+    guests: form.guests.value,
+    message: form.message.value
+  };
+
+  try {
+    const response = await fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (result.result === 'success') {
+      form.reset();
+      success.classList.remove('hidden');
+      btn.innerText = 'RSVP Sent ✓';
+    }
+  } catch (err) {
+    console.error(err);
+    btn.disabled = false;
+    btn.innerText = 'Send RSVP';
+    alert('Unable to send RSVP.');
+  }
+});
+</script>
 
 </body>
 
