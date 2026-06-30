@@ -1,0 +1,185 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSVP | Leomar & Leonor</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background:
+        radial-gradient(circle at top,
+          #1b1327,
+          #07070c 70%);
+      color: #f8f5ed;
+      min-height: 100vh;
+    }
+
+    h1,
+    h2,
+    .logo {
+      font-family: 'Cinzel', serif;
+    }
+
+    .gold {
+      color: #d4af37;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      box-shadow:
+        0 0 50px rgba(212, 175, 55, 0.12),
+        0 20px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    input,
+    select,
+    textarea {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      color: white;
+      transition: all .3s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #d4af37;
+      box-shadow: 0 0 15px rgba(212, 175, 55, .25);
+    }
+
+    .royal-btn {
+      background: linear-gradient(135deg, #d4af37, #f1d37a);
+      color: #111827;
+      transition: all .35s ease;
+    }
+
+    .royal-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.35);
+    }
+  </style>
+</head>
+
+<body class="flex items-center justify-center p-6">
+
+  <div class="glass rounded-[40px] p-10 md:p-14 w-full max-w-3xl">
+
+    <div class="text-center mb-10">
+      <p class="uppercase tracking-[0.5em] text-gray-400 text-sm mb-4">
+        ✦ Royal Invitation ✦
+      </p>
+
+      <h1 class="text-4xl md:text-6xl gold mb-4">
+        RSVP
+      </h1>
+
+      <p class="text-xl text-gray-300">
+        Kindly let us know if you will be joining us on our special day.
+      </p>
+    </div>
+
+    <form action="#" method="POST" class="space-y-6">
+
+      <div>
+        <label class="block mb-2 text-lg">
+          Full Name
+        </label>
+
+        <input
+          type="text"
+          name="name"
+          required
+          placeholder="Enter your full name"
+          class="w-full rounded-2xl px-5 py-4">
+      </div>
+
+      <div>
+        <label class="block mb-2 text-lg">
+          Email Address
+        </label>
+
+        <input
+          type="email"
+          name="email"
+          placeholder="you@example.com"
+          class="w-full rounded-2xl px-5 py-4">
+      </div>
+
+      <div>
+        <label class="block mb-2 text-lg">
+          Will you attend?
+        </label>
+
+        <select
+          name="attendance"
+          class="w-full rounded-2xl px-5 py-4">
+
+          <option value="yes">Yes, I will attend</option>
+          <option value="no">Sorry, I cannot attend</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block mb-2 text-lg">
+          Number of Guests
+        </label>
+
+        <input
+          type="number"
+          name="guests"
+          value="1"
+          min="1"
+          max="10"
+          class="w-full rounded-2xl px-5 py-4">
+      </div>
+
+      <div>
+        <label class="block mb-2 text-lg">
+          Message for the Couple
+        </label>
+
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="Write your wishes for the happy couple..."
+          class="w-full rounded-2xl px-5 py-4"></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="royal-btn w-full rounded-full py-4 text-lg font-semibold">
+        Send RSVP
+      </button>
+
+    </form>
+
+    <div class="text-center mt-10">
+      <a
+        href="./invitation.html"
+        class="text-gray-400 hover:text-yellow-400 transition">
+        ← Back to Invitation
+      </a>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
+```
